@@ -56,7 +56,7 @@ app.get(callbackPath, async (req, res) => {
   // Try to parse authorization code from the query parameters.
   const authorizationCode = req.query?.code;
 
-  // Send error if the authorization cocde was not found.
+  // Send error if the authorization code was not found.
   if (!authorizationCode) {
     const errorMsg =
       "Expected authorization code in query parameters.\n" + req.url;
@@ -109,18 +109,19 @@ app.get(callbackPath, async (req, res) => {
   // Make the exchange for tokens by calling the /token endpoint and sending the
   // authorization code.
   try {
-    // Send token request and get the response body as JSON.
+    // Send the token request and get the response body in JSON.
     const response = await fetch(tokenEndpoint, requestOptions);
     const result = await response.json();
 
-    // For demoing purposes
-    res.json(result);
+    // For demoing purposes, forward the json response from the token endpoint.
+    res.status(200).json(result);
   } catch (error) {
     // Handle error
 
-    // For demoing purposes
+    // For demoing purposes, log the error to the server console and send the
+    // error as a response.
     console.log(error);
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
