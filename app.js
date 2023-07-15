@@ -1,7 +1,7 @@
 // Allows us to read values from ".env" file.
 require("dotenv").config();
 
-// Express setup
+// Express setup config
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -31,7 +31,7 @@ const redirectURI = appBasePath + ":" + port + callbackPath;
 const scope = "openid profile p1:read:user";
 // The OAuth 2.0/OIDC grant type in the authorization request and the token
 // request.
-// i.e., code - Authorization Code;
+// i.e., code, authorization_code - Authorization Code;
 const responseType = "code";
 const grantType = "authorization_code";
 
